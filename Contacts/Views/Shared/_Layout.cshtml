@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    
+
     @Styles.Render("~/Content/bootswatch/flatly/bootstrap.min.css")
     @Styles.Render("~/Content/Contacts.css")
     @Scripts.Render("~/bundles/modernizr")
@@ -13,7 +13,8 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">MyContacts</a>
+                <img class="navbar-brand" src="~/Content/images/Logo.png" style="padding-top:0;padding-bottom:0" />
+                <a class="navbar-brand" href="@Url.Action("Index", "Contacts")">MyContacts</a>
             </div>
         </div>
     </nav>

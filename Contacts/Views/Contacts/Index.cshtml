@@ -13,12 +13,36 @@
 <!---Check if contacts number is bigger than 0.-->
 @if (Model.Count() > 0)
 {
-    <div class="list-group">
-        @foreach (var item in Model)
-        {
-            <a class="list-group-item" href="#">
-                @item.Name
-            </a>
-        }
+    <div class="form-group">
+            <input class="form-control" type="text" id="searchInput" onkeyup="filter()" placeholder="Search..">        
     </div>
-}
+        <div class="list-group" id="list">
+            @foreach (var item in Model)
+            {
+                <a class="list-group-item" href="#" id="listItem">
+                    @item.Name
+                    <br/>
+                    @item.PhoneNumber
+                </a>
+            }
+        </div>
+       }
+
+<script>
+    function filter() {
+        var input = document.getElementById("searchInput");
+        var filter = input.value.toUpperCase();
+        var list = document.getElementById("list");
+        var listItems = list.getElementsByTagName("a");
+        var value;
+        for (i = 0; i < listItems.length; i++) {
+            value = listItems[i].innerText.toUpperCase();
+   
+            if (value.indexOf(filter) > -1) {
+                listItems[i].style.display = "";
+            } else {
+                listItems[i].style.display = "none";
+            }
+        }
+    }
+</script>
