@@ -2,15 +2,18 @@
     max-width: 350px;
     margin-left: auto;
     margin-right: auto;
+    overflow-y: hidden;
 }
 
-.input-group {
+.list-group:hover {
+    overflow-y: scroll;
+}
+
+.messageContainer {
     max-width: 350px;
     margin-left: auto;
     margin-right: auto;
-    font-size: 16px;
 }
-
 
 #plusbtn {
     border-radius: 50%;
@@ -19,4 +22,8 @@
 
 #searchForm {
     margin-top: 50px;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 16px;
 }

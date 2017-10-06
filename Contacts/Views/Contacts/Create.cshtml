@@ -6,40 +6,51 @@
 }
 
 
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css" />
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"> </script>
 
-@using (Html.BeginForm()) 
+<!--New Contact Form-->
+@using (Html.BeginForm("Create","Contacts", FormMethod.Post ,new { @id = "contactForm"}))
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal" id="contactForm">
+
+@*<form id="contactForm" method="post">*@
+    <div class="form-horizontal">
         <h4>Add New Contact</h4>
         <hr />
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder="Name", @Name = "name" } })
-                @*@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })*@
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name", @Name = "name", @required = "true" } })
+                </div>
+            </div>
+            <div class="col-sm-4 messageContainer">
             </div>
         </div>
         <div class="form-group">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-               @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "Phone Number", @pattern = "[0-9]+", @maxlength = "10", @name = "phone" } })
-               @*@Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })*@
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "Phone Number", @pattern = "[0-9]{10}", @maxlength = "10", @name = "phoneNumber" ,@type = "tel", @required = "true", @title = "Please enter numbers only"} })
+                </div>
             </div>
-            
+            <div class="col-sm-4 messageContainer">
+            </div>
         </div>
-
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-4 col-md-10">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </div>
     </div>
-}
-
+@*</form>*@
+ }   
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
@@ -48,3 +59,41 @@
         @Scripts.Render("~/bundles/jqueryval")
     }
 
+
+<script>
+    $(document).ready(function () {
+        console.log("in script");
+        $('#contactForm').bootstrapValidator({
+            err: {
+                container: function ($field, validator) {
+                    console.log(validator);
+                    return $field.parent().next('.messageContainer');
+                }
+            },
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                name: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The name is required and cannot be empty'
+                        }
+                    }
+                },
+                phoneNumber: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The phone number is required and cannot be empty'
+                        },
+                        phoneNumber: {
+                            message: 'The phone number is not valid'
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>

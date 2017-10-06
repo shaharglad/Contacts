@@ -162,6 +162,10 @@
     <Compile Include="Migrations\201710051950342_changeRegex.Designer.cs">
       <DependentUpon>201710051950342_changeRegex.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710061626250_delRegex.cs" />
+    <Compile Include="Migrations\201710061626250_delRegex.Designer.cs">
+      <DependentUpon>201710061626250_delRegex.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -238,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710051950342_changeRegex.resx">
       <DependentUpon>201710051950342_changeRegex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710061626250_delRegex.resx">
+      <DependentUpon>201710061626250_delRegex.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
