@@ -15,7 +15,6 @@
 {
     @Html.AntiForgeryToken()
 
-@*<form id="contactForm" method="post">*@
     <div class="form-horizontal">
         <h4>Add New Contact</h4>
         <hr />
@@ -49,7 +48,6 @@
             </div>
         </div>
     </div>
-@*</form>*@
  }   
     <div>
         @Html.ActionLink("Back to List", "Index")
@@ -59,7 +57,7 @@
         @Scripts.Render("~/bundles/jqueryval")
     }
 
-
+<!--Validation Script-->
 <script>
     $(document).ready(function () {
         console.log("in script");
