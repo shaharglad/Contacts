@@ -25,7 +25,7 @@
             <div class="col-sm-4">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name", @Name = "name", @required = "true" } })
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name", @Name = "name", @required = "true"} })
                 </div>
             </div>
             <div class="col-sm-4 messageContainer">
@@ -36,7 +36,7 @@
             <div class="col-sm-4">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "Phone Number", @pattern = "[0-9]{10}", @maxlength = "10", @name = "phoneNumber" ,@type = "tel", @required = "true", @title = "Please enter numbers only"} })
+                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "Phone (numbers only)", @pattern = "[0-9]{10}", @maxlength = "10", @name = "phone" ,@type = "tel", @required = "true"} })
                 </div>
             </div>
             <div class="col-sm-4 messageContainer">
@@ -74,20 +74,17 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
+                phone: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The phone number is required and cannot be empty'
+                        }
+                    }
+                },
                 name: {
                     validators: {
                         notEmpty: {
                             message: 'The name is required and cannot be empty'
-                        }
-                    }
-                },
-                phoneNumber: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The phone number is required and cannot be empty'
-                        },
-                        phoneNumber: {
-                            message: 'The phone number is not valid'
                         }
                     }
                 }

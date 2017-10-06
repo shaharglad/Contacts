@@ -18,7 +18,7 @@ namespace Contacts.Controllers
         // GET: Contacts
         public ActionResult Index()
         {
-            return View(db.Contacts.ToList());
+            return View(db.Contacts.OrderBy(c => c.Name).ToList());
         }
 
         // GET: Contacts/Create
